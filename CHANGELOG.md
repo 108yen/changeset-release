@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.9
+
+### Patch Changes
+
+- [#31](https://github.com/108yen/changeset-release/pull/31) [`b998853`](https://github.com/108yen/changeset-release/commit/b9988532d6317086a8c352560b1ad902b41f957d) Thanks [@108yen](https://github.com/108yen)! - Fix build script so that `JasonEtco/build-and-tag-action@v2` copy only `dist/index.js` and `action.yml`. If other file exist, that is not contain release and not found error occurred.
+
 ## 1.0.8
 
 ### Patch Changes
