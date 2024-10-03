@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.8
+
+### Patch Changes
+
+- [#29](https://github.com/108yen/changeset-release/pull/29) [`adb1c69`](https://github.com/108yen/changeset-release/commit/adb1c69e6cf9b1b0e59d5b41d3af882ab343032b) Thanks [@108yen](https://github.com/108yen)! - Restore display tag and tag_name parameter.
+
 ## 1.0.7
 
 ### Patch Changes
