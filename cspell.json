@@ -9,5 +9,6 @@
     "tseslint",
     "typecheck",
     "Etco"
-  ]
+  ],
+  "ignorePaths": ["node_modules", "dist"]
 }
