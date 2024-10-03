@@ -54,6 +54,9 @@ jobs:
     needs: release
     runs-on: ubuntu-latest
     steps:
+      - name: Display Tag
+        run: echo '${{ needs.release.outputs.tag }}'
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -75,5 +78,7 @@ jobs:
 
       - name: Publish
         uses: JasonEtco/build-and-tag-action@v2
+        with:
+          tag_name: ${{ needs.release.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
