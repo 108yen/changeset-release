@@ -74,7 +74,7 @@ async function main() {
       ...github.context.repo,
     })
 
-    core.setOutput("releaseTag", tagName)
+    core.setOutput("tag", tagName)
   } catch (error) {
     core.error(error as string)
     core.setFailed("Unexpected error, something wrong.")
