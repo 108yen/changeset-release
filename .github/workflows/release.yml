@@ -1,4 +1,4 @@
-name: Release
+name: Release and Publish
 
 on:
   pull_request_target:
@@ -48,5 +48,32 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   publish:
+    name: Publish
+
+    permissions:
+      contents: write
+
     needs: release
-    uses: ./.github/workflows/publish.yml
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run build
+        run: pnpm build
+
+      - name: Publish
+        uses: JasonEtco/build-and-tag-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
