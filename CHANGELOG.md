@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.4
+
+### Patch Changes
+
+- [#21](https://github.com/108yen/changeset-release/pull/21) [`d068a6d`](https://github.com/108yen/changeset-release/commit/d068a6df3137f753d4f9454a5f891cea16008664) Thanks [@108yen](https://github.com/108yen)! - Fixed release workflow. Build-and-tag-action needs `tag_name`. And update output name to tag.
+
 ## 1.0.3
 
 ### Patch Changes
