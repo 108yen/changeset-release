@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.6
+
+### Patch Changes
+
+- [#25](https://github.com/108yen/changeset-release/pull/25) [`2931876`](https://github.com/108yen/changeset-release/commit/293187685a9b133383e85f69574bbc326bb6b19b) Thanks [@108yen](https://github.com/108yen)! - Added tag display step and tag_name parameter to Publish step.
+
 ## 1.0.5
 
 ### Patch Changes
