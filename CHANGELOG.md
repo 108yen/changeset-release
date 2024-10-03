@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.1
+
+### Patch Changes
+
+- [#13](https://github.com/108yen/changeset-release/pull/13) [`aa4043e`](https://github.com/108yen/changeset-release/commit/aa4043e8d1e01905746508c2a760036367543161) Thanks [@108yen](https://github.com/108yen)! - Fixed wrong option.
+
 ## 1.0.0
 
 ### Major Changes
