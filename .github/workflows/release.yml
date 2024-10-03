@@ -1,4 +1,4 @@
-name: Release
+name: Release and Publish
 
 on:
   pull_request_target:
@@ -15,6 +15,9 @@ jobs:
 
     permissions:
       contents: write
+
+    outputs:
+      tag: ${{ steps.release.outputs.tag }}
 
     if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'changeset-release/main')
     runs-on: ubuntu-latest
@@ -47,9 +50,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+  publish:
+    name: Publish
+
+    permissions:
+      contents: write
+
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ needs.release.outputs.tag }}
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3.0.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run build
+        run: pnpm build
+
       - name: Publish
         uses: JasonEtco/build-and-tag-action@v2
-        with:
-          tag_name: ${{ steps.release.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
