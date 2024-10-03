@@ -1,6 +1,6 @@
 {
   "name": "changeset-release",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Separate release processing from changesets/action.",
   "main": "dist/index.js",
   "private": true,
