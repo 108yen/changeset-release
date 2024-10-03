@@ -24,8 +24,10 @@
   "author": "108yen",
   "license": "MIT",
   "dependencies": {
+    "@actions/core": "^1.11.0",
     "@actions/github": "^6.0.0",
     "@octokit/plugin-throttling": "^9.3.1",
+    "find-packages": "^10.0.4",
     "mdast-util-to-string": "^4.0.0",
     "remark-parse": "^11.0.0",
     "remark-stringify": "^11.0.0",
