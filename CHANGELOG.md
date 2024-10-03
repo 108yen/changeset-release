@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.7
+
+### Patch Changes
+
+- [#27](https://github.com/108yen/changeset-release/pull/27) [`48c6178`](https://github.com/108yen/changeset-release/commit/48c617831645c234b4e205896877b23f0defbd92) Thanks [@108yen](https://github.com/108yen)! - Fixed set workflow output.
+
 ## 1.0.6
 
 ### Patch Changes
