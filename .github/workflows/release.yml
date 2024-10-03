@@ -42,6 +42,11 @@ jobs:
         run: pnpm build
 
       - name: Release
+        id: release
         uses: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish:
+    needs: release
+    uses: ./.github/workflows/publish.yml
