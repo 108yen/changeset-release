@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.2
+
+### Patch Changes
+
+- [#15](https://github.com/108yen/changeset-release/pull/15) [`212730d`](https://github.com/108yen/changeset-release/commit/212730d11f1f91969c7343e20f9c79bdb8dc303b) Thanks [@108yen](https://github.com/108yen)! - Added `branding` metadata.
+
 ## 1.0.1
 
 ### Patch Changes
