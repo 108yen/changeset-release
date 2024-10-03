@@ -38,8 +38,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # TODO: created use this package
-      # - name: Create release
-      #   run: pnpm release
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release
+        run: ./
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
