@@ -6,7 +6,7 @@ branding:
   color: yellow
 
 outputs:
-  releaseTag:
+  tag:
     description: "The release tag"
 
 runs:
