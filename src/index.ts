@@ -73,7 +73,10 @@ async function main() {
       tag_name: tagName,
       ...github.context.repo,
     })
-  } catch {
+
+    core.setOutput("releaseTag", tagName)
+  } catch (error) {
+    core.error(error as string)
     core.setFailed("Unexpected error, something wrong.")
   }
 }
