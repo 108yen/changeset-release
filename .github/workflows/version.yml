@@ -40,7 +40,6 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          title: "Update version"
           commit: "ci(changesets): update version"
           setupGitUser: false
           branch: main
