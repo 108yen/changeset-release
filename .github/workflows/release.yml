@@ -1,9 +1,7 @@
 name: Release
 
 on:
-  pull_request_target:
-    types:
-      - closed
+  push:
     branches:
       - main
 
@@ -14,9 +12,9 @@ jobs:
     name: release
 
     permissions:
+      pull-requests: write
       contents: write
 
-    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'changeset-release/main')
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -38,10 +36,22 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Create Pull Request
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          commit: "ci(changesets): update version"
+          setupGitUser: false
+          branch: main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Run build
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: pnpm build
 
-      - name: Create release
+      - name: Release
+        if: steps.changesets.outputs.hasChangesets == 'false'
         run: ./
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
