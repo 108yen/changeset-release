@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.5
+
+### Patch Changes
+
+- [#23](https://github.com/108yen/changeset-release/pull/23) [`35b2eda`](https://github.com/108yen/changeset-release/commit/35b2edafd7d384518afb2ce80faaa7b7f8ac4d51) Thanks [@108yen](https://github.com/108yen)! - Separate release and publish jobs to fetch release tag.
+
 ## 1.0.4
 
 ### Patch Changes
