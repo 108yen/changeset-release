@@ -1,8 +1,14 @@
 name: "Changeset-release"
 description: "A Github action for creating non-public releases with changesets"
+
+branding:
+  icon: octagon
+  color: yellow
+
 outputs:
   releaseTag:
     description: "The release tag"
+
 runs:
   using: "node20"
   main: "dist/index.js"
