@@ -5,7 +5,7 @@ This allows for release whenever you want.
 
 ### Outputs
 
-- releaseTag: Release tag. (Example: `v1.0.0`)
+- tag: Release tag. (Example: `v1.0.0`)
 
 ### Example workflow
 
