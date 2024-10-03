@@ -53,18 +53,18 @@ async function main() {
     const octokit = setupOctokit(githubToken)
 
     const packages = await findPackages("./")
-    const { name, version } = packages[0].manifest
+    const { version } = packages[0].manifest
 
-    if (!version || !name) {
+    if (!version) {
       core.setFailed(
-        "Please add name and version to package.json in the root folder.",
+        "Could not find version in package.json. Please make sure the version is listed in package.json in the root folder.",
       )
       return
     }
 
     const changelog = fs.readFileSync("CHANGELOG.md", "utf-8")
 
-    const tagName = `${name}@${version}`
+    const tagName = `v${version}`
     const { content } = getChangelogEntry(changelog, version)
 
     await octokit.rest.repos.createRelease({
