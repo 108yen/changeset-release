@@ -1,5 +1,13 @@
 # changeset-release
 
+## 1.0.3
+
+### Patch Changes
+
+- [#17](https://github.com/108yen/changeset-release/pull/17) [`46a5831`](https://github.com/108yen/changeset-release/commit/46a58318baf4a2e870be038e9c70c33ee79eaae2) Thanks [@108yen](https://github.com/108yen)! - Update publish workflow trigger. Publish workflow triggered after release workflow.
+
+- [#19](https://github.com/108yen/changeset-release/pull/19) [`ad8f754`](https://github.com/108yen/changeset-release/commit/ad8f7549ffd87e23fdbbbbf1dd6b971648d19f28) Thanks [@108yen](https://github.com/108yen)! - Fixed publish workflow. Concat release and publish workflow.
+
 ## 1.0.2
 
 ### Patch Changes
