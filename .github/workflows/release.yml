@@ -77,5 +77,6 @@ jobs:
         uses: teunmooij/github-versioned-release@3edf649c6e5e5e976d43f2584b15bdc8b4c8f0df # v1.2.1
         with:
           version: ${{ needs.release.outputs.tag }}
+          template: "javascript-action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
