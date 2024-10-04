@@ -5,6 +5,11 @@ branding:
   icon: octagon
   color: yellow
 
+inputs:
+  format:
+    description: "The release tag format"
+    required: false
+
 outputs:
   tag:
     description: "The release tag"

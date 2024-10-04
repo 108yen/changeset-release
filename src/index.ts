@@ -5,7 +5,7 @@ import { throttling } from "@octokit/plugin-throttling"
 import { findPackages } from "find-packages"
 import fs from "fs"
 
-import { getChangelogEntry } from "./utils"
+import { getChangelogEntry, getOptionalInput } from "./utils"
 
 const setupOctokit = (githubToken: string) => {
   return new (GitHub.plugin(throttling))(
@@ -50,10 +50,17 @@ async function main() {
       return
     }
 
-    const octokit = setupOctokit(githubToken)
+    const format = getOptionalInput("format") ?? "prefix"
 
     const packages = await findPackages("./")
-    const { version } = packages[0].manifest
+    const { name, version } = packages[0].manifest
+
+    if (!name && format == "full") {
+      core.setFailed(
+        "Could not find name in package.json. Please make sure the name is listed in package.json in the root folder.",
+      )
+      return
+    }
 
     if (!version) {
       core.setFailed(
@@ -62,10 +69,34 @@ async function main() {
       return
     }
 
+    const octokit = setupOctokit(githubToken)
     const changelog = fs.readFileSync("CHANGELOG.md", "utf-8")
 
-    const tagName = `v${version}`
     const { content } = getChangelogEntry(changelog, version)
+
+    let tagName: string
+
+    switch (format) {
+      case "full":
+        tagName = `${name}@${version}`
+        break
+
+      case "major":
+        tagName = `v${version.split(".")[0]}`
+        break
+
+      case "prefix":
+        tagName = `v${version}`
+        break
+
+      case "simple":
+        tagName = version
+        break
+
+      default:
+        core.setFailed("Format is wrong.")
+        return
+    }
 
     try {
       await octokit.rest.repos.createRelease({

@@ -5,6 +5,14 @@ This allows for release whenever you want.
 
 ## Usage
 
+### Inputs
+
+- format: Release tag format. Choose one of these. Default is `prefix`.
+  - full: `package@1.0.0`
+  - major: `v1`
+  - prefix `v1.0.0`
+  - simple `1.0.0`
+
 ### Outputs
 
 - tag: Release tag. (Example: `v1.0.0`)

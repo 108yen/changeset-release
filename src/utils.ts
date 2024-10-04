@@ -1,3 +1,4 @@
+import * as core from "@actions/core"
 import { toString } from "mdast-util-to-string"
 import remarkParse from "remark-parse"
 import remarkStringify from "remark-stringify"
@@ -60,4 +61,8 @@ export function getChangelogEntry(changelog: string, version: string) {
     content: unified().use(remarkStringify).stringify(ast),
     highestLevel: highestLevel,
   }
+}
+
+export function getOptionalInput(name: string) {
+  return core.getInput(name) || undefined
 }
