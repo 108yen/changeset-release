@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.1.0
+
+### Minor Changes
+
+- [#42](https://github.com/108yen/changeset-release/pull/42) [`599fc39`](https://github.com/108yen/changeset-release/commit/599fc39583a687ea8865be4da2e2f4866f8c7236) Thanks [@108yen](https://github.com/108yen)! - Added ability of change tag format.
+
 ## 1.0.11
 
 ### Patch Changes
