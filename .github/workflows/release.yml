@@ -74,8 +74,8 @@ jobs:
         run: pnpm build
 
       - name: Publish
-        uses: JasonEtco/build-and-tag-action@v2
+        uses: teunmooij/github-versioned-release@1d30c3002ab2c6953c0b61a2c1b11c3782013abe # v1.2.1
         with:
-          tag_name: ${{ needs.release.outputs.tag }}
+          version: ${{ needs.release.outputs.tag }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
