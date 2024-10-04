@@ -8,7 +8,7 @@
     "TSES",
     "tseslint",
     "typecheck",
-    "teunmooij"
+    "Etco"
   ],
   "ignorePaths": ["node_modules", "dist", "CHANGELOG.md"]
 }
