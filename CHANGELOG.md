@@ -1,5 +1,13 @@
 # changeset-release
 
+## 1.0.10
+
+### Patch Changes
+
+- [#36](https://github.com/108yen/changeset-release/pull/36) [`b1fb03c`](https://github.com/108yen/changeset-release/commit/b1fb03c196ad776ba5f578b4bff5e343dc17d424) Thanks [@108yen](https://github.com/108yen)! - Added error handling for failed `createRelease` using `octokit`.
+
+- [#34](https://github.com/108yen/changeset-release/pull/34) [`03fdc43`](https://github.com/108yen/changeset-release/commit/03fdc438d3ffcca399333adf3d8071e0cb9a7ecf) Thanks [@108yen](https://github.com/108yen)! - Change action name.
+
 ## 1.0.9
 
 ### Patch Changes
