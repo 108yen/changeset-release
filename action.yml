@@ -1,4 +1,4 @@
-name: "Changeset-release"
+name: "Changeset Release"
 description: "A Github action for creating non-public releases with changesets"
 
 branding:
