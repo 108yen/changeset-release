@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.0.11
+
+### Patch Changes
+
+- [#40](https://github.com/108yen/changeset-release/pull/40) [`269ca9e`](https://github.com/108yen/changeset-release/commit/269ca9e87f24cb4e91ae73d31e19022420415079) Thanks [@108yen](https://github.com/108yen)! - Fix publish action. Wrong commit hash was set. And set `template` parameter of publish.
+
 ## 1.0.10
 
 ### Patch Changes
