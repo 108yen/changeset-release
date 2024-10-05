@@ -7,11 +7,12 @@ This allows for release whenever you want.
 
 ### Inputs
 
-- format: Release tag format. Choose one of these. Default is `prefix`.
+- format: Release tag format. Choose one of these. (Default: `prefix`.)
   - full: `package@1.0.0`
   - major: `v1`
   - prefix `v1.0.0`
   - simple `1.0.0`
+- target: Specifies the commitish value that determines where the Git tag is created from. Can be any branch or commit SHA. Unused if the Git tag already exists. (Default: the repository's default branch.)
 
 ### Outputs
 

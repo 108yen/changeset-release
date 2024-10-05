@@ -1,14 +1,15 @@
 {
   "words": [
+    "commitish",
     "commitlint",
     "compat",
+    "Etco",
     "lefthook",
     "mdast",
     "multilines",
     "TSES",
     "tseslint",
-    "typecheck",
-    "Etco"
+    "typecheck"
   ],
   "ignorePaths": ["node_modules", "dist", "CHANGELOG.md"]
 }

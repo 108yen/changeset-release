@@ -98,18 +98,19 @@ async function main() {
         return
     }
 
+    const target = getOptionalInput("target")
+
     try {
       await octokit.rest.repos.createRelease({
         body: content,
         name: tagName,
         tag_name: tagName,
+        target_commitish: target,
         ...github.context.repo,
       })
     } catch (error) {
       core.error(error as string)
-      core.setFailed(
-        "Failed create release. Please make sure 'contents: write' permission is granted to job.",
-      )
+      core.setFailed("Failed create release.")
     }
 
     core.setOutput("tag", tagName)
