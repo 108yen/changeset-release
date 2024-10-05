@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.2.0
+
+### Minor Changes
+
+- [#44](https://github.com/108yen/changeset-release/pull/44) [`3036e09`](https://github.com/108yen/changeset-release/commit/3036e0963002944aa088ae17e58e941901f52ac1) Thanks [@108yen](https://github.com/108yen)! - Added the ability to specify the target (branch or commit) for creating a release.
+
 ## 1.1.0
 
 ### Minor Changes
