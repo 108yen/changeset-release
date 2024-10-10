@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.2.3
+
+### Patch Changes
+
+- [#52](https://github.com/108yen/changeset-release/pull/52) [`19f57f3`](https://github.com/108yen/changeset-release/commit/19f57f3c95c19248693a946dfa20f898762d950f) Thanks [@108yen](https://github.com/108yen)! - Fixed release workflow. Generate tag force.
+
 ## 1.2.2
 
 ### Patch Changes
