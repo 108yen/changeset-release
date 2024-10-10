@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.2.1
+
+### Patch Changes
+
+- [#48](https://github.com/108yen/changeset-release/pull/48) [`b24ace7`](https://github.com/108yen/changeset-release/commit/b24ace7c080f17f3e3b677121ba5e3d73f710f33) Thanks [@108yen](https://github.com/108yen)! - Update build command to generate licenses, source map.
+
 ## 1.2.0
 
 ### Minor Changes
