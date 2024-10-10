@@ -27,9 +27,9 @@ async function main() {
   await exec("git", ["push", "--force", "origin", `HEAD:refs/heads/${major}`])
 
   core.info("Creating tags...")
-  await exec("git", ["tag", tag])
-  await exec("git", ["tag", minor])
-  await exec("git", ["tag", major])
+  await exec("git", ["tag", tag, "--force"])
+  await exec("git", ["tag", minor, "--force"])
+  await exec("git", ["tag", major, "--force"])
 
   core.info("Push tags...")
   await exec("git", ["push", "--force", "origin", major])
