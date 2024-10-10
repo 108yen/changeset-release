@@ -74,8 +74,4 @@ jobs:
         run: pnpm build
 
       - name: Publish
-        uses: JasonEtco/build-and-tag-action@v2
-        with:
-          tag_name: ${{ needs.release.outputs.tag }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pnpm gen:tags
