@@ -1,5 +1,11 @@
 # changeset-release
 
+## 1.2.2
+
+### Patch Changes
+
+- [#50](https://github.com/108yen/changeset-release/pull/50) [`e665d03`](https://github.com/108yen/changeset-release/commit/e665d03f6fd7b2f13338e94573a69308dd10352c) Thanks [@108yen](https://github.com/108yen)! - Fixed release workflow failed. We need to setup git config to run update tags script.
+
 ## 1.2.1
 
 ### Patch Changes
