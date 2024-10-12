@@ -1,5 +1,6 @@
 {
   "words": [
+    "automerge",
     "commitish",
     "commitlint",
     "compat",
@@ -11,5 +12,9 @@
     "tseslint",
     "typecheck"
   ],
-  "ignorePaths": ["node_modules", "dist", "CHANGELOG.md"]
+  "ignorePaths": [
+    "node_modules",
+    "dist",
+    "CHANGELOG.md"
+  ]
 }

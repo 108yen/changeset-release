@@ -1,0 +1,21 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "dependencyDashboard": false,
+  "extends": ["config:base"],
+  "schedule": ["every weekend"],
+  "labels": ["dependencies"],
+  "rebaseWhen": "conflicted",
+  "timezone": "Asia/Tokyo",
+  "assignees": ["108yen"],
+  "packageRules": [
+    {
+      "description": "Automatically merge minor and patch-level updates",
+      "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    },
+    {
+      "groupName": "eslint",
+      "matchPackageNames": ["eslint*"]
+    }
+  ]
+}
