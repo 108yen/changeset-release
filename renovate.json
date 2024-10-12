@@ -9,13 +9,27 @@
   "assignees": ["108yen"],
   "packageRules": [
     {
-      "description": "Automatically merge minor and patch-level updates",
+      "groupName": "dependencies",
+      "matchDepTypes":["dependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": false
+    },
+    {
+      "groupName": "dependencies",
+      "labels": ["major"],
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["major"],
+      "automerge": false
+    },
+    {
+      "groupName": "devDependencies",
+      "matchDepTypes": ["devDependencies"],
       "automerge": true
     },
     {
       "groupName": "eslint",
-      "matchPackageNames": ["eslint*"]
+      "matchPackageNames": ["/eslint/"],
+      "automerge": true
     }
   ]
 }
