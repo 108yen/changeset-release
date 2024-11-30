@@ -18,11 +18,11 @@ export function getChangelogEntry(changelog: string, version: string) {
 
   const nodes = ast.children as Array<any>
   let headingStartInfo:
+    | undefined
     | {
         depth: number
         index: number
       }
-    | undefined
   let endIndex: number | undefined
 
   for (let i = 0; i < nodes.length; i++) {
