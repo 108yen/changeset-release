@@ -92,13 +92,13 @@ importers:
         version: 4.1.4(@typescript-eslint/eslint-plugin@8.23.0(@typescript-eslint/parser@8.23.0(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.0(jiti@2.4.2))(typescript@5.7.3))(eslint@9.20.0(jiti@2.4.2))
       globals:
         specifier: ^15.10.0
-        version: 15.14.0
+        version: 15.15.0
       lefthook:
         specifier: ^1.7.18
         version: 1.10.10
       prettier:
         specifier: ^3.3.3
-        version: 3.4.2
+        version: 3.5.1
       semver:
         specifier: ^7.6.3
         version: 7.7.1
@@ -1845,8 +1845,8 @@ packages:
     resolution: {integrity: sha512-oahGvuMGQlPw/ivIYBjVSrWAfWLBeku5tpPE2fOPLi+WHffIWbuh2tCjhyQhTBPMf5E9jDEH4FOmTYgYwbKwtQ==}
     engines: {node: '>=18'}
 
-  globals@15.14.0:
-    resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
+  globals@15.15.0:
+    resolution: {integrity: sha512-7ACyT3wmyp3I61S4fG682L0VA2RGD9otkqGJIwNUMF1SWUombIIk+af1unuDYgMm082aHYwD+mzJvv9Iu8dsgg==}
     engines: {node: '>=18'}
 
   globalthis@1.0.4:
@@ -2513,8 +2513,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.4.2:
-    resolution: {integrity: sha512-e9MewbtFo+Fevyuxn/4rrcDAaq0IYxPGLvObpQjiZBMAzB9IGmzlnG9RZy3FFas+eBMu2vA0CszMeduow5dIuQ==}
+  prettier@3.5.1:
+    resolution: {integrity: sha512-hPpFQvHwL3Qv5AdRvBFMhnKo4tYxp0ReXiPn2bxkiohEX6mBeBwEpBSQTkD458RaaDKQMYSp4hX4UtfUTA5wDw==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -4922,7 +4922,7 @@ snapshots:
 
   globals@14.0.0: {}
 
-  globals@15.14.0: {}
+  globals@15.15.0: {}
 
   globalthis@1.0.4:
     dependencies:
@@ -5600,7 +5600,7 @@ snapshots:
 
   prettier@2.8.8: {}
 
-  prettier@3.4.2: {}
+  prettier@3.5.1: {}
 
   punycode@2.3.1: {}
 
