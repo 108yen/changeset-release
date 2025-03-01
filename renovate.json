@@ -8,13 +8,13 @@
   "timezone": "Asia/Tokyo",
   "assignees": ["108yen"],
   "prHourlyLimit": 10,
+  "automerge": true,
   "packageRules": [
     {
       "groupName": "dependencies",
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
-      "schedule": ["* * 1 * *"],
-      "automerge": false
+      "schedule": ["* * 1 * *"]
     },
     {
       "groupName": "dependencies",
@@ -26,13 +26,11 @@
     },
     {
       "groupName": "devDependencies",
-      "matchDepTypes": ["devDependencies"],
-      "automerge": true
+      "matchDepTypes": ["devDependencies"]
     },
     {
       "groupName": "eslint",
-      "matchPackageNames": ["/eslint/"],
-      "automerge": true
+      "matchPackageNames": ["/eslint/"]
     }
   ]
 }
