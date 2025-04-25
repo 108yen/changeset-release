@@ -49,7 +49,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Release
-        run: 108yen/changeset-release@v1
+        uses: 108yen/changeset-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -83,7 +83,7 @@ jobs:
 
       - name: Release
         id: release
-        run: 108yen/changeset-release@v1
+        uses: 108yen/changeset-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
