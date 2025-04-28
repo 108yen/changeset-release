@@ -15,6 +15,9 @@
     "lint": "eslint . --max-warnings=0 --cache",
     "lint:inspect": "pnpm dlx @eslint/config-inspector",
     "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:ui": "vitest --ui --coverage.enabled=true",
+    "test:coverage": "vitest run --coverage",
     "spellcheck": "cspell \"**/*.{js,jsx,mjs,ts,tsx,mts,md,mdx}\" --quiet",
     "gen:tags": "tsx scripts/update-tags.ts"
   },
@@ -61,6 +64,7 @@
     "ts-node": "^10.9.2",
     "tsx": "^4.19.1",
     "typescript": "^5.6.0",
-    "typescript-eslint": "^8.8.0"
+    "typescript-eslint": "^8.8.0",
+    "vitest": "^3.1.2"
   }
 }
