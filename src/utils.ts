@@ -1,4 +1,6 @@
 import * as core from "@actions/core"
+import { getOctokitOptions, GitHub } from "@actions/github/lib/utils"
+import { throttling } from "@octokit/plugin-throttling"
 import { toString } from "mdast-util-to-string"
 import remarkParse from "remark-parse"
 import remarkStringify from "remark-stringify"
@@ -65,4 +67,38 @@ export function getChangelogEntry(changelog: string, version: string) {
 
 export function getOptionalInput(name: string) {
   return core.getInput(name) || undefined
+}
+
+export const setupOctokit = (githubToken: string) => {
+  return new (GitHub.plugin(throttling))(
+    getOctokitOptions(githubToken, {
+      throttle: {
+        onRateLimit: (retryAfter, options: any, octokit, retryCount) => {
+          core.warning(
+            `Request quota exhausted for request ${options.method} ${options.url}`,
+          )
+
+          if (retryCount <= 2) {
+            core.info(`Retrying after ${retryAfter} seconds!`)
+            return true
+          }
+        },
+        onSecondaryRateLimit: (
+          retryAfter,
+          options: any,
+          octokit,
+          retryCount,
+        ) => {
+          core.warning(
+            `SecondaryRateLimit detected for request ${options.method} ${options.url}`,
+          )
+
+          if (retryCount <= 2) {
+            core.info(`Retrying after ${retryAfter} seconds!`)
+            return true
+          }
+        },
+      },
+    }),
+  )
 }
