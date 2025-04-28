@@ -10,11 +10,8 @@
     "multilines",
     "TSES",
     "tseslint",
-    "typecheck"
+    "typecheck",
+    "Vitest"
   ],
-  "ignorePaths": [
-    "node_modules",
-    "dist",
-    "CHANGELOG.md"
-  ]
+  "ignorePaths": ["node_modules", "dist", "CHANGELOG.md"]
 }
