@@ -1,5 +1,8 @@
 # 108yen/changeset-release
 
+[![codecov](https://codecov.io/gh/108yen/changeset-release/graph/badge.svg?token=F2CQYGDLHE)](https://codecov.io/gh/108yen/changeset-release)
+[![MIT LIcense](https://img.shields.io/github/license/108yen/changeset-release)](https://img.shields.io/github/license/108yen/changeset-release)
+
 This action extracts the process of creating a release to github from [`Changesets Release Action`](https://github.com/changesets/action).
 This allows for release whenever you want.
 
