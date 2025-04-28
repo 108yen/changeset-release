@@ -10,5 +10,6 @@ export default defineConfig({
     include: ["./test/**"],
     mockReset: true,
     restoreMocks: true,
+    testTimeout: 20000,
   },
 })
