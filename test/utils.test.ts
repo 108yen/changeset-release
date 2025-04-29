@@ -1,8 +1,28 @@
 import { describe, expect, test, vi } from "vitest"
 
-import { getChangelogEntry, setupOctokit } from "../src/utils"
+import { getChangelogEntry, getOptionalInput, setupOctokit } from "../src/utils"
 
 describe("utils", () => {
+  const mock = vi.hoisted(() => ({
+    getInput: vi.fn(),
+    fetch: vi.fn(),
+    getOctokitOptions: vi.fn(),
+    info: vi.fn(),
+    warning: vi.fn(),
+  }))
+
+  vi.mock("@actions/core", async (actual) => ({
+    ...(await actual<typeof import("@actions/core")>()),
+    info: mock.info,
+    warning: mock.warning,
+    getInput: mock.getInput,
+  }))
+
+  vi.mock("@actions/github/lib/utils", async (actual) => ({
+    ...(await actual<typeof import("@actions/github/lib/utils")>()),
+    getOctokitOptions: mock.getOctokitOptions,
+  }))
+
   describe("getChangelogEntry", () => {
     const changelog = `
 # changeset-release
@@ -85,9 +105,25 @@ describe("utils", () => {
     })
   })
 
-  describe.todo("getOptionalInput")
+  describe("getOptionalInput", () => {
+    test("Works correctly when exist value", () => {
+      mock.getInput.mockReturnValue("Input exist")
 
-  describe.skip("setupOctokit", () => {
+      const value = getOptionalInput("input")
+
+      expect(value).toBe("Input exist")
+    })
+
+    test("Works correctly when does not exist value", () => {
+      mock.getInput.mockReturnValue("")
+
+      const value = getOptionalInput("input")
+
+      expect(value).toBeUndefined()
+    })
+  })
+
+  describe("setupOctokit", () => {
     const content = {
       body: "This is test of create github release",
       owner: "108yen",
@@ -95,24 +131,6 @@ describe("utils", () => {
       tag_name: "v1.0.0",
       target_commitish: "xxx",
     } as const
-
-    const mock = vi.hoisted(() => ({
-      fetch: vi.fn(),
-      getOctokitOptions: vi.fn(),
-      info: vi.fn(),
-      warning: vi.fn(),
-    }))
-
-    vi.mock("@actions/core", async (actual) => ({
-      ...(await actual<typeof import("@actions/core")>()),
-      info: mock.info,
-      warning: mock.warning,
-    }))
-
-    vi.mock("@actions/github/lib/utils", async (actual) => ({
-      ...(await actual<typeof import("@actions/github/lib/utils")>()),
-      getOctokitOptions: mock.getOctokitOptions,
-    }))
 
     test("Request called correctly", async () => {
       const mockFetch = vi.fn()
