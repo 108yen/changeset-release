@@ -5,10 +5,10 @@ import fs from "fs"
 
 import { getChangelogEntry, getOptionalInput, setupOctokit } from "./utils"
 
-async function main() {
+export async function main() {
   const githubToken =
     process.env.GITHUB_TOKEN ?? getOptionalInput("github_token")
-
+  
   if (!githubToken) {
     core.setFailed("Please add the GITHUB_TOKEN to the changesets action")
     return
@@ -18,7 +18,7 @@ async function main() {
 
   const packages = await findPackages("./")
   const { name, version } = packages[0].manifest
-
+  
   if (!name && format == "full") {
     core.setFailed(
       "Could not find name in package.json. Please make sure the name is listed in package.json in the root folder.",
@@ -35,9 +35,9 @@ async function main() {
 
   const octokit = setupOctokit(githubToken)
   const changelog = fs.readFileSync("CHANGELOG.md", "utf-8")
-
+  
   const { content } = getChangelogEntry(changelog, version)
-
+  
   let tagName: string
 
   switch (format) {

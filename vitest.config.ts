@@ -7,7 +7,7 @@ export default defineConfig({
       include: ["src/**"],
       provider: "v8",
     },
-    include: ["./test/**"],
+    include: ["./test/**.test.ts"],
     mockReset: true,
     restoreMocks: true,
     testTimeout: 20000,
