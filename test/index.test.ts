@@ -16,12 +16,14 @@ describe("index", () => {
     findPackages: vi.fn(),
     readFileSync: vi.fn(),
     setFailed: vi.fn(),
+    setOutput: vi.fn(),
   }))
 
   vi.mock("@actions/core", async (actual) => ({
     ...(await actual<typeof import("@actions/core")>()),
     getInput: mock.getInput,
     setFailed: mock.setFailed,
+    setOutput: mock.setOutput,
   }))
 
   vi.mock("@actions/github", async (actual) => ({
@@ -67,6 +69,11 @@ describe("index", () => {
     )
 
     mock.readFileSync.mockReturnValue(changelog)
+
+    mock.getInput.mockImplementation((value) => {
+      if (value == "github_token") return "token"
+      if (value == "target") return "main"
+    })
   })
 
   afterEach(() => {
@@ -75,16 +82,13 @@ describe("index", () => {
 
   describe("Call request correctly", () => {
     test("Default format is prefix", async () => {
-      mock.getInput.mockImplementation((value) => {
-        if (value == "github_token") return "token"
-      })
-
       await main()
 
       const body = JSON.stringify({
         body: major,
         name: "v2.0.0",
         tag_name: "v2.0.0",
+        target_commitish: "main",
       })
 
       expect(mock.fetch).toBeCalledWith(
@@ -94,6 +98,7 @@ describe("index", () => {
           method: "POST",
         }),
       )
+      expect(mock.setOutput).toBeCalledWith("tag", "v2.0.0")
     })
 
     test.each([
@@ -122,15 +127,12 @@ describe("index", () => {
           method: "POST",
         }),
       )
+      expect(mock.setOutput).toBeCalledWith("tag", tag)
     })
   })
 
   describe("Input handling works correctly", () => {
     test("Use `github_token` when passed as env", async () => {
-      mock.getInput.mockImplementation((value) => {
-        if (value == "github_token") return "token"
-      })
-
       process.env.GITHUB_TOKEN = "another_token"
 
       await main()
@@ -142,6 +144,10 @@ describe("index", () => {
     })
 
     test("Error with no github token", async () => {
+      mock.getInput.mockImplementation((value) => {
+        if (value == "target") return "main"
+      })
+
       await main()
 
       expect(mock.setFailed).toBeCalledWith(
@@ -158,7 +164,9 @@ describe("index", () => {
 
       await main()
 
-      expect(mock.setFailed).toBeCalledWith("Format is wrong.")
+      expect(mock.setFailed).toBeCalledWith(
+        "Please specify one of the formats.(full, major, prefix, simple)",
+      )
       expect(mock.fetch).not.toBeCalled()
     })
   })
@@ -187,10 +195,6 @@ describe("index", () => {
     })
 
     test("Error when `version` can not find", async () => {
-      mock.getInput.mockImplementation((value) => {
-        if (value == "github_token") return "token"
-      })
-
       mock.findPackages.mockReturnValue([
         {
           manifest: {
@@ -207,6 +211,22 @@ describe("index", () => {
       expect(mock.fetch).not.toBeCalled()
     })
 
-    test.todo("Error when content can not find")
+    test("Error when content can not find", async () => {
+      mock.findPackages.mockReturnValue([
+        {
+          manifest: {
+            name: "changeset-release",
+            version: "10.0.0",
+          },
+        },
+      ])
+
+      await main()
+
+      expect(mock.setFailed).toBeCalledWith(
+        `Could not find changelog of version 10.0.0 in CHANGELOG.md. Please make sure the version is listed in package.json or content in CHANGELOG.md.`,
+      )
+      expect(mock.fetch).not.toBeCalled()
+    })
   })
 })

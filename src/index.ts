@@ -8,7 +8,7 @@ import { getChangelogEntry, getOptionalInput, setupOctokit } from "./utils"
 export async function main() {
   const githubToken =
     process.env.GITHUB_TOKEN ?? getOptionalInput("github_token")
-  
+
   if (!githubToken) {
     core.setFailed("Please add the GITHUB_TOKEN to the changesets action")
     return
@@ -18,7 +18,7 @@ export async function main() {
 
   const packages = await findPackages("./")
   const { name, version } = packages[0].manifest
-  
+
   if (!name && format == "full") {
     core.setFailed(
       "Could not find name in package.json. Please make sure the name is listed in package.json in the root folder.",
@@ -35,9 +35,16 @@ export async function main() {
 
   const octokit = setupOctokit(githubToken)
   const changelog = fs.readFileSync("CHANGELOG.md", "utf-8")
-  
-  const { content } = getChangelogEntry(changelog, version)
-  
+
+  const { content, highestLevel } = getChangelogEntry(changelog, version)
+
+  if (highestLevel == 0) {
+    core.setFailed(
+      `Could not find changelog of version ${version} in CHANGELOG.md. Please make sure the version is listed in package.json or content in CHANGELOG.md.`,
+    )
+    return
+  }
+
   let tagName: string
 
   switch (format) {
@@ -58,7 +65,9 @@ export async function main() {
       break
 
     default:
-      core.setFailed("Format is wrong.")
+      core.setFailed(
+        "Please specify one of the formats.(full, major, prefix, simple)",
+      )
       return
   }
 
