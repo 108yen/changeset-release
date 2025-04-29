@@ -1,10 +1,72 @@
 import { describe, expect, test, vi } from "vitest"
 
-import { setupOctokit } from "../src/utils"
+import { getChangelogEntry, getOptionalInput, setupOctokit } from "../src/utils"
+import { changelog, major, minor, patch } from "./content"
 
 describe("utils", () => {
-  describe.todo("getChangelogEntry")
-  describe.todo("getOptionalInput")
+  const mock = vi.hoisted(() => ({
+    fetch: vi.fn(),
+    getInput: vi.fn(),
+    getOctokitOptions: vi.fn(),
+    info: vi.fn(),
+    warning: vi.fn(),
+  }))
+
+  vi.mock("@actions/core", async (actual) => ({
+    ...(await actual<typeof import("@actions/core")>()),
+    getInput: mock.getInput,
+    info: mock.info,
+    warning: mock.warning,
+  }))
+
+  vi.mock("@actions/github/lib/utils", async (actual) => ({
+    ...(await actual<typeof import("@actions/github/lib/utils")>()),
+    getOctokitOptions: mock.getOctokitOptions,
+  }))
+
+  describe("getChangelogEntry", () => {
+    test("Extract specific patch version content correctly", () => {
+      const version = "1.2.2"
+      const { content, highestLevel } = getChangelogEntry(changelog, version)
+
+      expect(content).toBe(patch)
+      expect(highestLevel).toBe(1)
+    })
+
+    test("Extract specific minor version content correctly", () => {
+      const version = "2.10.0"
+      const { content, highestLevel } = getChangelogEntry(changelog, version)
+
+      expect(content).toBe(minor)
+      expect(highestLevel).toBe(2)
+    })
+
+    test("Extract specific major version content correctly", () => {
+      const version = "2.0.0"
+      const { content, highestLevel } = getChangelogEntry(changelog, version)
+
+      expect(content).toBe(major)
+      expect(highestLevel).toBe(3)
+    })
+  })
+
+  describe("getOptionalInput", () => {
+    test("Works correctly when exist value", () => {
+      mock.getInput.mockReturnValue("Input exist")
+
+      const value = getOptionalInput("input")
+
+      expect(value).toBe("Input exist")
+    })
+
+    test("Works correctly when does not exist value", () => {
+      mock.getInput.mockReturnValue("")
+
+      const value = getOptionalInput("input")
+
+      expect(value).toBeUndefined()
+    })
+  })
 
   describe("setupOctokit", () => {
     const content = {
@@ -14,24 +76,6 @@ describe("utils", () => {
       tag_name: "v1.0.0",
       target_commitish: "xxx",
     } as const
-
-    const mock = vi.hoisted(() => ({
-      fetch: vi.fn(),
-      getOctokitOptions: vi.fn(),
-      info: vi.fn(),
-      warning: vi.fn(),
-    }))
-
-    vi.mock("@actions/core", async (actual) => ({
-      ...(await actual<typeof import("@actions/core")>()),
-      info: mock.info,
-      warning: mock.warning,
-    }))
-
-    vi.mock("@actions/github/lib/utils", async (actual) => ({
-      ...(await actual<typeof import("@actions/github/lib/utils")>()),
-      getOctokitOptions: mock.getOctokitOptions,
-    }))
 
     test("Request called correctly", async () => {
       const mockFetch = vi.fn()
