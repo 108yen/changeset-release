@@ -84,6 +84,7 @@ export async function main() {
   } catch (error) {
     core.error(error as string)
     core.setFailed("Failed create release.")
+    return 
   }
 
   core.setOutput("tag", tagName)

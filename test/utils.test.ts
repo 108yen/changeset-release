@@ -5,8 +5,8 @@ import { changelog, major, minor, patch } from "./content"
 
 describe("utils", () => {
   const mock = vi.hoisted(() => ({
-    getInput: vi.fn(),
     fetch: vi.fn(),
+    getInput: vi.fn(),
     getOctokitOptions: vi.fn(),
     info: vi.fn(),
     warning: vi.fn(),
@@ -14,9 +14,9 @@ describe("utils", () => {
 
   vi.mock("@actions/core", async (actual) => ({
     ...(await actual<typeof import("@actions/core")>()),
+    getInput: mock.getInput,
     info: mock.info,
     warning: mock.warning,
-    getInput: mock.getInput,
   }))
 
   vi.mock("@actions/github/lib/utils", async (actual) => ({

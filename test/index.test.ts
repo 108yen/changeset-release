@@ -1,19 +1,21 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from "vitest"
-import { changelog, major } from "./content"
+
 import { main } from "../src/index"
+import { changelog, major } from "./content"
 
 describe("index", () => {
   const mock = vi.hoisted(() => ({
-    getOctokitOptions: vi.fn(),
     context: {
       repo: {
         owner: "108yen",
         repo: "changeset-release",
       },
     },
-    getInput: vi.fn(),
+    error: vi.fn(),
     fetch: vi.fn(),
     findPackages: vi.fn(),
+    getInput: vi.fn(),
+    getOctokitOptions: vi.fn(),
     readFileSync: vi.fn(),
     setFailed: vi.fn(),
     setOutput: vi.fn(),
@@ -21,6 +23,7 @@ describe("index", () => {
 
   vi.mock("@actions/core", async (actual) => ({
     ...(await actual<typeof import("@actions/core")>()),
+    error: mock.error,
     getInput: mock.getInput,
     setFailed: mock.setFailed,
     setOutput: mock.setOutput,
@@ -227,6 +230,40 @@ describe("index", () => {
         `Could not find changelog of version 10.0.0 in CHANGELOG.md. Please make sure the version is listed in package.json or content in CHANGELOG.md.`,
       )
       expect(mock.fetch).not.toBeCalled()
+    })
+  })
+
+  describe("Error handling of api call", () => {
+    test("Error with api call failed", async () => {
+      mock.fetch.mockRejectedValue(new Error("This is error for test"))
+
+      await main()
+
+      expect(mock.error).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: "This is error for test",
+          name: "HttpError",
+          status: 500,
+        }),
+      )
+      expect(mock.setFailed).toHaveBeenCalledWith("Failed create release.")
+    })
+
+    test("Error with response error code", async () => {
+      mock.fetch.mockResolvedValue(
+        new Response(JSON.stringify({}), { status: 400 }),
+      )
+
+      await main()
+
+      expect(mock.error).toHaveBeenCalledWith(
+        expect.objectContaining({
+          message: "{}",
+          name: "HttpError",
+          status: 400,
+        }),
+      )
+      expect(mock.setFailed).toHaveBeenCalledWith("Failed create release.")
     })
   })
 })
