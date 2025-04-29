@@ -21,8 +21,7 @@
       "addLabels": ["major"],
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["major"],
-      "schedule": ["* * 1 * *"],
-      "automerge": false
+      "schedule": ["* * 1 * *"]
     },
     {
       "groupName": "devDependencies",
