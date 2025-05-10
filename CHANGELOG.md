@@ -1,5 +1,13 @@
 # changeset-release
 
+## 1.2.4
+
+### Patch Changes
+
+- [#162](https://github.com/108yen/changeset-release/pull/162) [`dd4b13e`](https://github.com/108yen/changeset-release/commit/dd4b13ebd45564624eda6d6e9e25f4302f0ccaf7) Thanks [@108yen](https://github.com/108yen)! - Set `github_tokne` to default input
+
+- [#162](https://github.com/108yen/changeset-release/pull/162) [`6ddd381`](https://github.com/108yen/changeset-release/commit/6ddd3814a501e07920e9413c656943d8fbac5124) Thanks [@108yen](https://github.com/108yen)! - Check exist content of specified version in `CHANGELOG.md`.
+
 ## 1.2.3
 
 ### Patch Changes
