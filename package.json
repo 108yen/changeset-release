@@ -33,8 +33,8 @@
   "author": "108yen",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "^1.11.0",
-    "@actions/github": "^6.0.0",
+    "@actions/core": "^3.0.0",
+    "@actions/github": "^9.0.0",
     "@octokit/plugin-throttling": "^11.0.0",
     "find-packages": "^10.0.4",
     "mdast-util-to-string": "^4.0.0",
